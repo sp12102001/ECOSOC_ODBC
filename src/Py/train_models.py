@@ -6,18 +6,15 @@
 
 import logging
 from typing import Dict, List, Optional
-from un_ai import (
+from un_ai import ( # type: ignore
     QuantumNeuralTrainer, 
     SpaceDataAugmenter,
     NeuromorphicOptimizer,
     QuantumSecurityValidator,
     FederatedCoordinator
 )
-from un_ai.metrics import ImpactMetrics
+from un_ai.metrics import ImpactMetrics # type: ignore # type: ignore
 from un_ai.security import QuantumPrivacy
-import numpy as np
-from azure.quantum import Workspace
-import yaml
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -139,57 +136,6 @@ class ECOSOCModelTrainer:
         except Exception as e:
             logger.error(f"Training failed: {str(e)}")
             raise
-
-class QuantumMetricsModel:
-    def __init__(self):
-        self.config = self._load_config()
-        self.workspace = self._initialize_quantum_workspace()
-
-    def _load_config(self):
-        with open("config/quantum_config.yaml", "r") as f:
-            return yaml.safe_load(f)
-
-    def _initialize_quantum_workspace(self):
-        config = self.get_quantum_config()
-        return Workspace(
-            subscription_id=config["subscription_id"],
-            resource_group=config["resource_group"],
-            name=config["quantum_workspace"],
-            location=config["location"]
-        )
-
-    def predict(self, data):
-        """
-        Make predictions using quantum-enhanced model
-        """
-        # Placeholder for quantum computation
-        return np.array([self._quantum_compute(x) for x in data])
-
-    def _quantum_compute(self, features):
-        # Placeholder for actual quantum computation
-        return np.sum(features) * 0.5
-
-    def validate(self):
-        """
-        Validate model configuration and quantum workspace connection
-        """
-        try:
-            self.workspace.get_targets()
-            return True
-        except Exception:
-            return False
-
-    def get_quantum_config(self):
-        """
-        Get quantum workspace configuration
-        """
-        return {
-            "space_id": self.config.get("space_id"),
-            "quantum_workspace": self.config.get("workspace_name"),
-            "subscription_id": self.config.get("subscription_id"),
-            "resource_group": self.config.get("resource_group"),
-            "location": self.config.get("location")
-        }
 
 if __name__ == "__main__":
     trainer = ECOSOCModelTrainer(

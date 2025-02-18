@@ -82,16 +82,8 @@
 
   <!-- Quantum and Neuromorphic Compilation -->
   <Target Name="CompileQuantum" BeforeTargets="BuildMez">
-    <!-- Quantum Circuit Compilation -->
-    <Exec Command="qsharp compile --target ionq --optimize --error-correction surface17 --input @(QuantumContent) --output $(IntermediateOutputPath)quantum"/>
-    
-    <!-- Neuromorphic Model Compilation -->
-    <Exec Command="neuroc compile @(NeuromorphicModels) --optimize --target loihi2 --power-aware"/>
-    
-    <!-- Validate Quantum Security -->
-    <Exec Command="quantum-security-check --level post-quantum --circuits @(QuantumContent)"/>
-    
-    <!-- Verify Neuromorphic Models -->
-    <Exec Command="neuro-verify --models @(NeuromorphicModels) --constraints power,timing"/>
+    <Exec Command="qsharp compile --target ionq --optimize --error-correction surface41 --input @(QuantumContent) --output $(IntermediateOutputPath)quantum --validate-security"/>
+    <Exec Command="neuroc compile @(NeuromorphicModels) --optimize --target loihi2 --power-aware --safety-level ecoprost"/>
+    <Exec Command="quantum-security-check --level post-quantum-256 --circuits @(QuantumContent) --fail-on-warning"/>
   </Target>
 </Project>

@@ -1,0 +1,31 @@
+# ECOSOC Compliance Rules Configuration
+
+ECOSOC_RULE_1:
+  name: "Active Status Check"
+  description: "Fund must have active compliance status"
+  severity: "HIGH"
+  validation_type: "status"
+  required: true
+
+ECOSOC_RULE_2:
+  name: "Annual Review Check"
+  description: "Fund must undergo annual compliance review"
+  severity: "HIGH"
+  validation_type: "date"
+  max_days_since_review: 365
+  required: true
+
+ECOSOC_RULE_3:
+  name: "Data Privacy Check"
+  description: "Fund must maintain quantum-secure data handling"
+  severity: "CRITICAL"
+  validation_type: "security"
+  required: true
+
+ECOSOC_RULE_4:
+  name: "Reporting Frequency"
+  description: "Monthly compliance reports must be submitted"
+  severity: "MEDIUM"
+  validation_type: "frequency"
+  period_days: 30
+  required: true 

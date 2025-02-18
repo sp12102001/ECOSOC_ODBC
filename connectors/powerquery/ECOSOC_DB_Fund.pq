@@ -336,7 +336,9 @@ UN = [
             Text.Format("#1-#2", {Text.End(Text.From(Date.Year(fyStart)),2), Text.From(Date.Year(fyStart)+1)}),
     
     SanitizeAmount = (amount) =>
-        if amount > 1e9 then error "Exceeds UN single transaction limit"
+        if amount > 1e9 then 
+            error Error.Record("UN Compliance Violation", 
+                "Exceeds single transaction limit per Resolution 2024/DT-19") 
         else Number.Round(amount, 2)
 ],
 

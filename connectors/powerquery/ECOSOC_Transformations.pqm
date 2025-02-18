@@ -24,11 +24,11 @@ let
             ValidatedConnection = Odbc.DataSource(
                 server,
                 [
-                    // Quantum-secure authentication
-                    SecurityLevel = Config{[Setting="SecurityLevel"]}[Value],
+                    SecurityLevel = "Post-Quantum-256",
                     PrivacyPreserving = true,
-                    ErrorCorrection = Config{[Setting="ErrorCorrection"]}[Value],
-                    Implementation = "CRYSTALS-Kyber"
+                    ErrorCorrection = "Surface-41",
+                    CryptoProvider = "CRYSTALS-Kyber",
+                    QuantumEntropySource = "Satellite"
                 ]
             ),
             // Apply quantum noise for differential privacy

@@ -12,9 +12,9 @@
 CALCULATE(
     [Proportional Funding Security],
     DATESINPERIOD('Date'[Date], 
-                 LASTDATE('Date'[Date]), 
+                 MAX('Date'[Date]),
                  -12, MONTH),
-    KEEPFILTERS('Projects'[Status] = "Active")
+    KEEPFILTERS(KEEPFILTERS('Projects'[Status] = "Active"))
 )
 
 // Quarterly Trend Analysis
