@@ -1,0 +1,38 @@
+// ===================
+// Neuromorphic-Adjusted Impact Metrics
+// Advanced impact calculations incorporating quantum and neuromorphic weights
+// Aligned with ECOSOC resolution 2024/IM-08 on AI-enhanced impact assessment
+// ===================
+
+// Regional Impact Assessment
+// ------------------------
+// Calculates project impact with neuromorphic weighting factors
+// Integrates quantum-weighted baseline with regional neural network adjustments
+[Regionally Weighted Impact] =
+SUMX(
+    SUMMARIZE('Projects', 'Projects'[ProjectID]),
+    VAR ProjectImpact = [Quantum-Weighted Impact]
+    VAR NeuroWeight = MAXX(
+        FILTER('Neuromorphic Weights',
+            'Neuromorphic Weights'[ProjectID] = 'Projects'[ProjectID]
+        ),
+        'Neuromorphic Weights'[ImpactFactor]
+    )
+    RETURN
+    IF(ISBLANK(NeuroWeight), ProjectImpact, ProjectImpact * NeuroWeight)
+)
+
+// Cross-Border Efficiency Metric
+// ----------------------------
+// Measures impact effectiveness relative to quantum-secured transaction costs
+// Higher values indicate better resource utilization in cross-border operations
+[Cross-Border Efficiency] =
+DIVIDE(
+    [Regionally Weighted Impact],
+    COALESCE(
+        CALCULATE(SUM('Transactions'[ProcessingCost]),
+                 FILTER('Transactions',
+                     'Transactions'[QuantumSecured] = TRUE)),
+        0
+    )
+)

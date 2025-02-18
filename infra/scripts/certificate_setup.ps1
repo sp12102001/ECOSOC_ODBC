@@ -1,0 +1,2 @@
+$cert = New-SelfSignedCertificate -DnsName "ecosoc.un.org" -CertStoreLocation "Cert:\LocalMachine\My"
+Export-PfxCertificate -Cert $cert -FilePath "C:\Certificates\un_ecosoc.pfx" -Password (ConvertTo-SecureString -String "UN_2023_Secure!" -AsPlainText -Force) 

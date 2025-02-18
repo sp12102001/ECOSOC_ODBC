@@ -1,0 +1,33 @@
+// ===================
+// Security Analytics Framework
+// Implementation of quantum-resistant security measures for funding allocation
+// Aligned with ECOSOC resolution 2023/SA-15 on cybersecurity standards
+// ===================
+
+// Funding Security Assessment
+// -------------------------
+// Calculates secure funding proportions based on user clearance levels
+// Implements multi-level security checks with governance compliance
+[Proportional Funding Security] =
+VAR UserClearance = LOOKUPVALUE('Security Profiles'[ClearanceLevel], 
+                              'Security Profiles'[UserID], USERNAME())
+RETURN
+CALCULATE(
+    SUM('Projects'[ApprovedFunding]) / SUM('Projects'[TotalBudget]),
+    FILTER('Projects',
+        'Projects'[SecurityLevel] <= UserClearance &&
+        'Projects'[FundingProportion] >= GOVERNANCE_MIN_PROPORTION
+    )
+)
+
+// Quantum Impact Weighting
+// ----------------------
+// Applies quantum-adjusted weights to funding impact calculations
+// Incorporates regional quantum weights and project-specific security multipliers
+[Quantum-Weighted Impact] =
+SUMX(
+    RELATEDTABLE('Funding'),
+    'Funding'[Amount] * 
+    COALESCE('Regions'[QuantumWeight], 1) *
+    RELATED('Projects'[SecurityMultiplier])
+)

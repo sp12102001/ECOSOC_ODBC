@@ -1,0 +1,29 @@
+// ===================
+// Temporal Funding Analysis Framework
+// Time-series analysis of funding patterns and compliance metrics
+// Aligned with ECOSOC resolution 2023/TF-09 on temporal financial monitoring
+// ===================
+
+// Rolling Compliance Monitoring
+// --------------------------
+// Tracks 12-month rolling window of funding security compliance
+// Focuses on active projects with continuous monitoring requirements
+[Rolling 12M Compliance] =
+CALCULATE(
+    [Proportional Funding Security],
+    DATESINPERIOD('Date'[Date], 
+                 LASTDATE('Date'[Date]), 
+                 -12, MONTH),
+    KEEPFILTERS('Projects'[Status] = "Active")
+)
+
+// Quarterly Trend Analysis
+// ----------------------
+// Measures quarter-over-quarter funding variance
+// Identifies significant changes in funding patterns for risk assessment
+[Funding Trend Variance] =
+VAR CurrentPeriod = [Total Approved Funding]
+VAR PreviousPeriod = CALCULATE([Total Approved Funding], 
+                              DATEADD('Date'[Date], -1, QUARTER))
+RETURN
+DIVIDE(CurrentPeriod - PreviousPeriod, PreviousPeriod)

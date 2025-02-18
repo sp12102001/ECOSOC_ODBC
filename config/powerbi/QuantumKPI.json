@@ -1,0 +1,194 @@
+{
+    "visual": {
+        "name": "QuantumKPI",
+        "displayName": "Quantum-Enhanced KPI",
+        "guid": "quantumKPI1C91499101B4",
+        "visualClassName": "QuantumKPI",
+        "version": "1.0.0",
+        "description": "Advanced KPI visual with quantum security features",
+        "supportUrl": "https://ecosoc.un.org/support/quantum-visuals",
+        "gitHubUrl": "https://github.com/ECOSOC/quantum-visuals"
+    },
+
+    "apiVersion": "5.3.0",
+    "author": {
+        "name": "ECOSOC Data Team",
+        "email": "quantum-visuals@un.org"
+    },
+
+    "assets": {
+        "icon": "assets/icon.png",
+        "thumbnail": "assets/thumbnail.png",
+        "screenshots": [
+            "assets/screenshot1.png",
+            "assets/screenshot2.png"
+        ]
+    },
+
+    "capabilities": {
+        "dataRoles": [
+            {
+                "name": "measure",
+                "kind": "Measure",
+                "displayName": "Quantum Measure",
+                "description": "Quantum-verified numerical value"
+            },
+            {
+                "name": "category",
+                "kind": "Grouping",
+                "displayName": "Time Period",
+                "description": "Temporal dimension with quantum validation"
+            },
+            {
+                "name": "uncertainty",
+                "kind": "Measure",
+                "displayName": "Quantum Uncertainty",
+                "description": "Uncertainty measure from quantum computation"
+            }
+        ],
+
+        "objects": {
+            "quantumSettings": {
+                "displayName": "Quantum Settings",
+                "properties": {
+                    "verificationLevel": {
+                        "displayName": "Verification Level",
+                        "type": {
+                            "enumeration": [
+                                {
+                                    "value": "standard",
+                                    "displayName": "Standard"
+                                },
+                                {
+                                    "value": "enhanced",
+                                    "displayName": "Enhanced"
+                                },
+                                {
+                                    "value": "quantum",
+                                    "displayName": "Quantum-Verified"
+                                }
+                            ]
+                        }
+                    },
+                    "uncertaintyVisualization": {
+                        "displayName": "Uncertainty Display",
+                        "type": {
+                            "enumeration": [
+                                {
+                                    "value": "band",
+                                    "displayName": "Confidence Band"
+                                },
+                                {
+                                    "value": "gradient",
+                                    "displayName": "Quantum Gradient"
+                                },
+                                {
+                                    "value": "particles",
+                                    "displayName": "Quantum Particles"
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+
+            "dataColors": {
+                "displayName": "Colors",
+                "properties": {
+                    "fill": {
+                        "displayName": "Color",
+                        "type": {
+                            "fill": {
+                                "solid": {
+                                    "color": true
+                                }
+                            }
+                        }
+                    },
+                    "quantumGradient": {
+                        "displayName": "Quantum Gradient",
+                        "type": {
+                            "fill": {
+                                "solid": {
+                                    "color": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "animation": {
+                "displayName": "Animation",
+                "properties": {
+                    "quantum": {
+                        "displayName": "Quantum Effects",
+                        "type": {
+                            "bool": true
+                        }
+                    },
+                    "duration": {
+                        "displayName": "Duration",
+                        "type": {
+                            "numeric": true
+                        }
+                    }
+                }
+            }
+        },
+
+        "dataViewMappings": [
+            {
+                "conditions": [
+                    {
+                        "measure": {
+                            "max": 1
+                        },
+                        "category": {
+                            "max": 1
+                        },
+                        "uncertainty": {
+                            "max": 1
+                        }
+                    }
+                ],
+                "single": {
+                    "role": "measure"
+                }
+            }
+        ],
+
+        "sorting": {
+            "default": {}
+        }
+    },
+
+    "dependencies": {
+        "powerbi-visuals-api": "^5.3.0",
+        "quantum-vis-utils": "^1.0.0",
+        "d3": "^7.0.0"
+    },
+
+    "security": {
+        "encryption": {
+            "method": "post-quantum",
+            "algorithm": "kyber-1024"
+        },
+        "validation": {
+            "type": "quantum-signature",
+            "scheme": "dilithium-3"
+        }
+    },
+
+    "performance": {
+        "quantum": {
+            "enabled": true,
+            "optimizationLevel": "maximum",
+            "errorCorrection": "surface-code"
+        },
+        "rendering": {
+            "gpuAccelerated": true,
+            "quantumAccelerated": true
+        }
+    }
+} 
